@@ -1,13 +1,15 @@
 {
-    "compilerOptions": {
-        "target": "ES2018",
-        "module": "commonjs",
-        "sourceMap": true,
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "strict": true,
-        "esModuleInterop": true
-    },
-    "include": ["./src"],
-    "exclude": ["./src/web/frontend"]
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
+  },
+  "include": ["./src"],
+  "exclude": ["./src/web/frontend"]
 }
