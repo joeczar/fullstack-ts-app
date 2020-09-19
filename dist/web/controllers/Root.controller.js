@@ -10,31 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var decorators_1 = require("./decorators");
-function requireAuth(req, res, next) {
-    if (req.session && req.session.loggedIn) {
-        next();
-        return;
-    }
-    res.status(403);
-    res.send('Not Permitted');
-}
 var RootController = /** @class */ (function () {
     // eslint-disable-next-line no-unused-vars
     function RootController() {
     }
     RootController.prototype.getRoot = function (req, res) {
-        return res.render('index');
+        res.render('index');
     };
     __decorate([
-        decorators_1.get(''),
+        decorators_1.get('/'),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", void 0)
     ], RootController.prototype, "getRoot", null);
     RootController = __decorate([
-        decorators_1.controller('/')
+        decorators_1.controller('')
         // eslint-disable-next-line no-unused-vars
     ], RootController);
     return RootController;
 }());
-//# sourceMappingURL=RootController.js.map
+//# sourceMappingURL=Root.controller.js.map

@@ -9,9 +9,11 @@ var http_1 = __importDefault(require("http"));
 var path_1 = __importDefault(require("path"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var cookie_session_1 = __importDefault(require("cookie-session"));
+var morgan_1 = __importDefault(require("morgan"));
 var AppRouter_1 = require("./AppRouter");
-require("./controllers/LoginController");
-require("./controllers/RootController");
+// import './controllers/User.controller';
+require("./controllers/Login.controller");
+require("./controllers/Root.controller");
 // Express app initialization
 exports.app = express_1.default();
 // Template configuration
@@ -21,6 +23,7 @@ exports.app.set('views', 'public');
 exports.app.use(body_parser_1.default.json());
 exports.app.use(body_parser_1.default.urlencoded({ extended: true }));
 exports.app.use(cookie_session_1.default({ keys: ['allTheShit'] }));
+exports.app.use(morgan_1.default('dev'));
 // Static files configuration
 exports.app.use('/assets', express_1.default.static(path_1.default.join(__dirname, 'frontend')));
 // Controllers
@@ -31,6 +34,7 @@ exports.app.use(AppRouter_1.AppRouter.getInstance());
 // Start function
 exports.start = function (port) {
     var server = http_1.default.createServer(exports.app);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     return new Promise(function (resolve, reject) {
         server.listen(port, resolve);
     });
