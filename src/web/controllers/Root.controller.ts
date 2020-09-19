@@ -1,11 +1,10 @@
-import { Request, Response } from 'express';
-import { get, controller } from './decorators';
+import { Controller, Req, Res, Param, Body, Get, Post, Put, Delete } from 'routing-controllers';
 
-@controller('')
-// eslint-disable-next-line no-unused-vars
-class RootController {
-  @get('/')
-  getRoot (req: Request, res: Response) {
-    res.render('index');
+@Controller()
+export class RootController {
+  @Get('/')
+  renderReact(@Req() req: any, @Res() res: any) {
+    return res.render('index');
   }
+
 }

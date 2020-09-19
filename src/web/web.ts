@@ -1,16 +1,18 @@
+import 'reflect-metadata';
 import express from 'express';
+import { createExpressServer } from 'routing-controllers';
+import { UserController, RootController } from './controllers';
 import http from 'http';
 import path from 'path';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
 import morgan from 'morgan';
-import { AppRouter } from './AppRouter';
-// import './controllers/User.controller';
-import './controllers/Login.controller';
-import './controllers/Root.controller';
 
 // Express app initialization
-export const app = express();
+// export const app = express();
+export const app = createExpressServer({
+  controllers: [UserController, RootController], // we specify controllers we want to use
+});
 
 // Template configuration
 app.set('view engine', 'ejs');
@@ -24,7 +26,7 @@ app.use(morgan('dev'));
 app.use('/assets', express.static(path.join(__dirname, 'frontend')));
 
 // Controllers
-app.use(AppRouter.getInstance());
+// app.use(AppRouter.getInstance());
 
 // app.get('/*', (req, res) => {
 //   res.render('index');

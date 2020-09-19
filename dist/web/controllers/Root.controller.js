@@ -8,25 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var decorators_1 = require("./decorators");
+exports.RootController = void 0;
+var routing_controllers_1 = require("routing-controllers");
 var RootController = /** @class */ (function () {
-    // eslint-disable-next-line no-unused-vars
     function RootController() {
     }
-    RootController.prototype.getRoot = function (req, res) {
-        res.render('index');
+    RootController.prototype.renderReact = function (req, res) {
+        return res.render('index');
     };
     __decorate([
-        decorators_1.get('/'),
+        routing_controllers_1.Get('/'),
+        __param(0, routing_controllers_1.Req()), __param(1, routing_controllers_1.Res()),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", [Object, Object]),
         __metadata("design:returntype", void 0)
-    ], RootController.prototype, "getRoot", null);
+    ], RootController.prototype, "renderReact", null);
     RootController = __decorate([
-        decorators_1.controller('')
-        // eslint-disable-next-line no-unused-vars
+        routing_controllers_1.Controller()
     ], RootController);
     return RootController;
 }());
+exports.RootController = RootController;
 //# sourceMappingURL=Root.controller.js.map
