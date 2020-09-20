@@ -15,10 +15,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/command-line-args": "^5.0.0",
     "@types/cookie-session": "^2.0.41",
     "@types/morgan": "^1.9.1",
+    "command-line-args": "^5.1.1",
     "concurrently": "^5.3.0",
     "cookie-session": "^1.4.0",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "morgan": "^1.10.0",

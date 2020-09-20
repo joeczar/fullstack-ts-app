@@ -55,16 +55,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var config_1 = require("./config");
+require("./LoadEnv");
 var web = __importStar(require("./web"));
+var port = Number(process.env.PORT);
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, web.start(config_1.SERVER_PORT)];
+                case 0: return [4 /*yield*/, web.start(port)];
                 case 1:
                     _a.sent();
-                    console.log("Server started at http://localhost:" + config_1.SERVER_PORT);
+                    console.log("Server started at http://localhost:" + port);
                     return [2 /*return*/];
             }
         });

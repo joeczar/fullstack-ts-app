@@ -1,10 +1,12 @@
-import { SERVER_PORT } from './config';
+import './LoadEnv';
 
 import * as web from './web';
 
-async function main() {
-    await web.start(SERVER_PORT);
-    console.log(`Server started at http://localhost:${SERVER_PORT}`);
+const port = Number(process.env.PORT);
+
+async function main () {
+  await web.start(port);
+  console.log(`Server started at http://localhost:${port}`);
 }
 
 main().catch(error => console.error(error));
