@@ -4,13 +4,18 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import cookieSession from 'cookie-session';
 import morgan from 'morgan';
-import { AppRouter } from './AppRouter';
 // import './controllers/User.controller';
 import './controllers/Login.controller';
 import './controllers/Root.controller';
+import { useExpressServer } from 'routing-controllers';
 
 // Express app initialization
 export const app = express();
+
+// set up routing controllers
+useExpressServer(app, {
+  controllers: [`${__dirname}/controllers/*${__dirname === 'src' ? '.ts' : '.js'}`]
+});
 
 // Template configuration
 app.set('view engine', 'ejs');
@@ -24,7 +29,6 @@ app.use(morgan('dev'));
 app.use('/assets', express.static(path.join(__dirname, 'frontend')));
 
 // Controllers
-app.use(AppRouter.getInstance());
 
 // app.get('/*', (req, res) => {
 //   res.render('index');

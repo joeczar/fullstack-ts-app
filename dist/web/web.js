@@ -10,12 +10,16 @@ var path_1 = __importDefault(require("path"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var cookie_session_1 = __importDefault(require("cookie-session"));
 var morgan_1 = __importDefault(require("morgan"));
-var AppRouter_1 = require("./AppRouter");
 // import './controllers/User.controller';
 require("./controllers/Login.controller");
 require("./controllers/Root.controller");
+var routing_controllers_1 = require("routing-controllers");
 // Express app initialization
 exports.app = express_1.default();
+// set up routing controllers
+routing_controllers_1.useExpressServer(exports.app, {
+    controllers: [__dirname + "/controllers/*" + (__dirname === 'src' ? '.ts' : '.js')]
+});
 // Template configuration
 exports.app.set('view engine', 'ejs');
 exports.app.set('views', 'public');
@@ -27,7 +31,6 @@ exports.app.use(morgan_1.default('dev'));
 // Static files configuration
 exports.app.use('/assets', express_1.default.static(path_1.default.join(__dirname, 'frontend')));
 // Controllers
-exports.app.use(AppRouter_1.AppRouter.getInstance());
 // app.get('/*', (req, res) => {
 //   res.render('index');
 // });
