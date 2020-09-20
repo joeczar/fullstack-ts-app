@@ -25,13 +25,6 @@ app.use(morgan('dev'));
 // Static files configuration
 app.use('/assets', express.static(path.join(__dirname, 'frontend')));
 
-// Controllers
-// app.use(AppRouter.getInstance());
-
-// app.get('/*', (req, res) => {
-//   res.render('index');
-// });
-
 // Start function
 export const start = (port: number): Promise<void> => {
   const server = http.createServer(app);

@@ -6,6 +6,7 @@
   "scripts": {
     "test": "jest",
     "build:backend": "tsc",
+    "docker": "docker-compose up",
     "start:frontend": "webpack",
     "start:build": "tsc -w",
     "start:run": "nodemon dist/main.js",

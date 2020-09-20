@@ -28,11 +28,6 @@ exports.app.use(cookie_session_1.default({ keys: ['allTheShit'] }));
 exports.app.use(morgan_1.default('dev'));
 // Static files configuration
 exports.app.use('/assets', express_1.default.static(path_1.default.join(__dirname, 'frontend')));
-// Controllers
-// app.use(AppRouter.getInstance());
-// app.get('/*', (req, res) => {
-//   res.render('index');
-// });
 // Start function
 exports.start = function (port) {
     var server = http_1.default.createServer(exports.app);

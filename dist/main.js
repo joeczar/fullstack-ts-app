@@ -54,18 +54,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var config_1 = require("./config");
+require("dotenv/config");
+require("reflect-metadata");
+var ormconfig_1 = __importDefault(require("./ormconfig"));
+var typeorm_1 = require("typeorm");
 var web = __importStar(require("./web"));
+var port = Number(process.env.SERVER_PORT);
 function main() {
     return __awaiter(this, void 0, void 0, function () {
+        var error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, web.start(config_1.SERVER_PORT)];
+                case 0:
+                    _a.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, typeorm_1.createConnection(ormconfig_1.default)];
                 case 1:
                     _a.sent();
-                    console.log("Server started at http://localhost:" + config_1.SERVER_PORT);
-                    return [2 /*return*/];
+                    return [4 /*yield*/, web.start(port)];
+                case 2:
+                    _a.sent();
+                    console.log("Server started at http://localhost:" + port);
+                    return [3 /*break*/, 4];
+                case 3:
+                    error_1 = _a.sent();
+                    console.log('Error while connecting to the database', error_1);
+                    return [2 /*return*/, error_1];
+                case 4: return [2 /*return*/];
             }
         });
     });
