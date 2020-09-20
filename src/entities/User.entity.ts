@@ -20,14 +20,14 @@ export class User extends BaseEntity {
     @IsEmail()
     email?: string;
 
-    @Column("varchar",{length: 64, nullable: true})
-    hash?: string;
+    // @Column("varchar",{length: 64, nullable: true})
+    // hash?: string; 
 
     constructor(first?: string, last?: string, email?: string, hash?: string) {
         super()
         this.first = first;
         this.last = last;
         this.email = email;
-        this.hash = hash;
+        // this.hash = hash;
     }
 }

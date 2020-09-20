@@ -7,33 +7,35 @@ import { classToClassFromExist } from 'class-transformer';
 
 @JsonController('/api/users')
 export class UserController extends ApiBase {
-  private userRepository = getRepository(User);
+  // private userRepository = getRepository(User);
 
   @Get('')
   private async getAll() {
-    const users = await this.userRepository.find();
-    return users;
+    // const users = await this.userRepository.find();
+    // return users ? users : [];
+    return {users: []}
   }
   @Get('/:id')
   getOne(@Param('id') id: User['id']) {
-    return this.userRepository.findOne(id);
+    // return this.userRepository.findOne(id);
+    return {user: id}
   }
 
-  @Post('/new-user')
-  post(@Body() user: User) {
-    const {first, last, email, hash} = user
+  // @Post('/new-user')
+  // post(@Body() user: User) {
+  //   const {first, last, email} = user
 
-    const saveUser = new User(first, last, email, hash)
-    return this.userRepository.insert(saveUser);
-  }
+  //   const saveUser = new User(first, last, email)
+  //   return this.userRepository.insert(saveUser);
+  // }
 
-  @Put('/:id')
-  private put(@Param('id') id: number, @Body() user: any) {
-    return 'Updating a user...';
-  }
+  // @Put('/:id')
+  // private put(@Param('id') id: number, @Body() user: any) {
+  //   return 'Updating a user...';
+  // }
 
-  @Delete('/:id')
-  private remove(@Param('id') id: number) {
-    return 'Removing user...';
-  }
+  // @Delete('/:id')
+  // private remove(@Param('id') id: number) {
+  //   return 'Removing user...';
+  // }
 }

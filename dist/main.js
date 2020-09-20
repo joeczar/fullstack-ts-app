@@ -58,32 +58,41 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.dbConnect = void 0;
 require("dotenv/config");
 require("reflect-metadata");
 var ormconfig_1 = __importDefault(require("./ormconfig"));
 var typeorm_1 = require("typeorm");
 var web = __importStar(require("./web"));
 var port = Number(process.env.SERVER_PORT);
+exports.dbConnect = function () { return __awaiter(void 0, void 0, void 0, function () {
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, typeorm_1.createConnection(ormconfig_1.default)];
+            case 1:
+                _a.sent();
+                return [2 /*return*/];
+        }
+    });
+}); };
 function main() {
     return __awaiter(this, void 0, void 0, function () {
         var error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, typeorm_1.createConnection(ormconfig_1.default)];
+                    _a.trys.push([0, 2, , 3]);
+                    exports.dbConnect();
+                    return [4 /*yield*/, web.start(port)];
                 case 1:
                     _a.sent();
-                    return [4 /*yield*/, web.start(port)];
-                case 2:
-                    _a.sent();
                     console.log("Server started at http://localhost:" + port);
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 3];
+                case 2:
                     error_1 = _a.sent();
                     console.log('Error while connecting to the database', error_1);
                     return [2 /*return*/, error_1];
-                case 4: return [2 /*return*/];
+                case 3: return [2 /*return*/];
             }
         });
     });

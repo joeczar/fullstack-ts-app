@@ -28,13 +28,15 @@ var Base_entity_1 = require("./Base.entity");
 var class_validator_1 = require("class-validator");
 var User = /** @class */ (function (_super) {
     __extends(User, _super);
+    // @Column("varchar",{length: 64, nullable: true})
+    // hash?: string; 
     function User(first, last, email, hash) {
         var _this = _super.call(this) || this;
         _this.first = first;
         _this.last = last;
         _this.email = email;
-        _this.hash = hash;
         return _this;
+        // this.hash = hash;
     }
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
@@ -53,10 +55,6 @@ var User = /** @class */ (function (_super) {
         class_validator_1.IsEmail(),
         __metadata("design:type", String)
     ], User.prototype, "email", void 0);
-    __decorate([
-        typeorm_1.Column("varchar", { length: 64, nullable: true }),
-        __metadata("design:type", String)
-    ], User.prototype, "hash", void 0);
     User = __decorate([
         typeorm_1.Entity(),
         __metadata("design:paramtypes", [String, String, String, String])

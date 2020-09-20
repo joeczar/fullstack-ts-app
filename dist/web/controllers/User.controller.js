@@ -63,42 +63,25 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 var routing_controllers_1 = require("routing-controllers");
-var typeorm_1 = require("typeorm");
-var entities_1 = require("../../entities");
 var Base_controller_1 = require("./Base.controller");
 var UserController = /** @class */ (function (_super) {
     __extends(UserController, _super);
     function UserController() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.userRepository = typeorm_1.getRepository(entities_1.User);
-        return _this;
+        return _super !== null && _super.apply(this, arguments) || this;
     }
+    // private userRepository = getRepository(User);
     UserController.prototype.getAll = function () {
         return __awaiter(this, void 0, void 0, function () {
-            var users;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.userRepository.find()];
-                    case 1:
-                        users = _a.sent();
-                        return [2 /*return*/, users];
-                }
+                // const users = await this.userRepository.find();
+                // return users ? users : [];
+                return [2 /*return*/, { users: [] }];
             });
         });
     };
     UserController.prototype.getOne = function (id) {
-        return this.userRepository.findOne(id);
-    };
-    UserController.prototype.post = function (user) {
-        var first = user.first, last = user.last, email = user.email, hash = user.hash;
-        var saveUser = new entities_1.User(first, last, email, hash);
-        return this.userRepository.insert(saveUser);
-    };
-    UserController.prototype.put = function (id, user) {
-        return 'Updating a user...';
-    };
-    UserController.prototype.remove = function (id) {
-        return 'Removing user...';
+        // return this.userRepository.findOne(id);
+        return { user: id };
     };
     __decorate([
         routing_controllers_1.Get(''),
@@ -113,27 +96,6 @@ var UserController = /** @class */ (function (_super) {
         __metadata("design:paramtypes", [Object]),
         __metadata("design:returntype", void 0)
     ], UserController.prototype, "getOne", null);
-    __decorate([
-        routing_controllers_1.Post('/new-user'),
-        __param(0, routing_controllers_1.Body()),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [entities_1.User]),
-        __metadata("design:returntype", void 0)
-    ], UserController.prototype, "post", null);
-    __decorate([
-        routing_controllers_1.Put('/:id'),
-        __param(0, routing_controllers_1.Param('id')), __param(1, routing_controllers_1.Body()),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Number, Object]),
-        __metadata("design:returntype", void 0)
-    ], UserController.prototype, "put", null);
-    __decorate([
-        routing_controllers_1.Delete('/:id'),
-        __param(0, routing_controllers_1.Param('id')),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Number]),
-        __metadata("design:returntype", void 0)
-    ], UserController.prototype, "remove", null);
     UserController = __decorate([
         routing_controllers_1.JsonController('/api/users')
     ], UserController);

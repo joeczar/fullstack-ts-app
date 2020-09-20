@@ -39,21 +39,57 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var supertest_1 = __importDefault(require("supertest"));
-var web_1 = require("./web");
-describe('Test PingController', function () {
-    it('Request /ping should return Pong!', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, supertest_1.default(web_1.app).get('/ping').send()];
-                case 1:
-                    result = _a.sent();
-                    expect(result.status).toBe(200);
-                    expect(result.body.data).toBe('Pong!');
-                    return [2 /*return*/];
-            }
+var typeorm_1 = require("typeorm");
+var ormconfig_1 = __importDefault(require("../ormconfig"));
+var connection = {
+    create: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, typeorm_1.createConnection(ormconfig_1.default)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
         });
-    }); });
-});
-//# sourceMappingURL=ping.test.js.map
+    },
+    close: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, typeorm_1.getConnection().close()];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    },
+    clear: function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var connection, entities;
+            var _this = this;
+            return __generator(this, function (_a) {
+                connection = typeorm_1.getConnection();
+                entities = connection.entityMetadatas;
+                entities.forEach(function (entity) { return __awaiter(_this, void 0, void 0, function () {
+                    var repository;
+                    return __generator(this, function (_a) {
+                        switch (_a.label) {
+                            case 0:
+                                repository = connection.getRepository(entity.name);
+                                return [4 /*yield*/, repository.query("DELETE FROM " + entity.tableName)];
+                            case 1:
+                                _a.sent();
+                                return [2 /*return*/];
+                        }
+                    });
+                }); });
+                return [2 /*return*/];
+            });
+        });
+    },
+};
+exports.default = connection;
+//# sourceMappingURL=connection.js.map

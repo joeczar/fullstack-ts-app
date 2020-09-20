@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --forceExit --detectOpenHandles  --watchAll --maxWorkers=1",
     "build:backend": "tsc",
     "docker": "docker-compose up",
     "start:frontend": "webpack",
