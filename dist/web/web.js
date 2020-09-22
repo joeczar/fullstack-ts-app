@@ -15,13 +15,13 @@ app.set('views', 'public');
 // Static files configuration
 app.use('/assets', express_1.default.static(path_1.default.join(__dirname, 'frontend')));
 // Controllers
-app.get('/*', (req, res) => {
+app.get('/*', (_req, res) => {
     res.render('index');
 });
 // Start function
 exports.start = (port) => {
     const server = http_1.default.createServer(app);
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
         server.listen(port, resolve);
     });
 };

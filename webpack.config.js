@@ -27,7 +27,7 @@ module.exports = {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
             },
-
+            // {test: /\.tsx?$/, exclude: /\.test.tsx?$/, include: './src/__tests__/React', use: 'awesome-typescript-loader?silent=true'} ,
             // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
             { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' },
             {
@@ -36,11 +36,12 @@ module.exports = {
             },
         ],
     },
-
+    
     optimization: {
         splitChunks: {
             chunks: 'all',
         },
         usedExports: true,
     },
+    
 };

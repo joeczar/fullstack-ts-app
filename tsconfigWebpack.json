@@ -1,0 +1,14 @@
+
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "sourceMap": true,
+        "jsx": "react",
+        "strict": true,
+        "esModuleInterop": true,
+        "rootDir": "./src/web/frontend"
+        
+    },
+    "include":["./src/web/frontend"]
+}

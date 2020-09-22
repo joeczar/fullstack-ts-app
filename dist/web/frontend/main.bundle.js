@@ -178,32 +178,68 @@ ___CSS_LOADER_EXPORT___.push([module.i, ".App {\n    margin: 30px auto;\n    max
 
 /***/ }),
 
+/***/ "./src/web/frontend/App.tsx":
+/*!**********************************!*\
+  !*** ./src/web/frontend/App.tsx ***!
+  \**********************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+__webpack_require__(/*! ./style.css */ "./src/web/frontend/style.css");
+const App = () => {
+    const [counter, setCounter] = react_1.useState(0);
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("div", { className: 'App' },
+            react_1.default.createElement("h1", null, counter),
+            react_1.default.createElement("button", { onClick: () => setCounter(counter + 1) }, "Press me"))));
+};
+exports.default = App;
+
+
+/***/ }),
+
 /***/ "./src/web/frontend/main.tsx":
 /*!***********************************!*\
   !*** ./src/web/frontend/main.tsx ***!
   \***********************************/
-/*! no exports provided */
+/*! no static exports found */
 /*! all exports used */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style.css */ "./src/web/frontend/style.css");
-/* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_style_css__WEBPACK_IMPORTED_MODULE_2__);
 
-
-
-const App = () => {
-    const [counter, setCounter] = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0);
-    return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: 'App' },
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, counter),
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", { onClick: () => setCounter(counter + 1) }, "Press me")));
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById('root'));
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const react_dom_1 = __importDefault(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));
+const App_1 = __importDefault(__webpack_require__(/*! ./App */ "./src/web/frontend/App.tsx"));
+react_dom_1.default.render(react_1.default.createElement(App_1.default, null), document.getElementById('root'));
 
 
 /***/ }),
@@ -213,6 +249,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
   !*** ./src/web/frontend/style.css ***!
   \************************************/
 /*! no static exports found */
+/*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
 var api = __webpack_require__(/*! ../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
