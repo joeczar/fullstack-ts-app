@@ -1,14 +1,17 @@
 {
-    "extends": "./tsconfigWebpack.json",
-    "compilerOptions": {
-        "target": "ES2018",
-        "module": "commonjs",
-        "sourceMap": true,
-        "outDir": "./dist",
-        "rootDir": "./src",
-        "strict": true,
-        "esModuleInterop": true
-    },
-    "include": ["./src"],
-    
+  "extends": "./tsconfigWebpack.json",
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "commonjs",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+  },
+  "include": [
+    "./src"
+  ],
 }

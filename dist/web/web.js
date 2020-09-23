@@ -25,4 +25,5 @@ exports.start = (port) => {
         server.listen(port, resolve);
     });
 };
+exports.default = app;
 //# sourceMappingURL=web.js.map

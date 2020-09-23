@@ -24,3 +24,5 @@ export const start = (port: number): Promise<void> => {
       server.listen(port, resolve);
     });
 };
+
+export default app;
