@@ -18,12 +18,21 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const config_1 = require("./config");
+require("dotenv/config");
+require("reflect-metadata");
+const typeorm_1 = require("typeorm");
+const ormconfig_1 = __importDefault(require("./ormconfig"));
 const web = __importStar(require("./web"));
+const port = Number(process.env.PORT) || 3000;
 async function main() {
-    await web.start(config_1.SERVER_PORT);
-    console.log(`Server started at http://localhost:${config_1.SERVER_PORT}`);
+    await typeorm_1.createConnection(ormconfig_1.default);
+    console.log('Connected to DB');
+    await web.start(port);
+    console.log(`Server started at http://localhost:${port}`);
 }
 main().catch(error => console.error(error));
 //# sourceMappingURL=main.js.map

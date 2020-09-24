@@ -22,11 +22,16 @@
     "license": "ISC",
     "dependencies": {
         "concurrently": "^5.3.0",
+        "dotenv": "^8.2.0",
         "ejs": "^3.1.5",
         "express": "^4.17.1",
         "nodemon": "^2.0.4",
+        "pg": "^8.3.3",
+        "postcss": "^8.0.9",
         "react": "^16.13.1",
-        "react-dom": "^16.13.1"
+        "react-dom": "^16.13.1",
+        "reflect-metadata": "^0.1.13",
+        "typeorm": "^0.2.26"
     },
     "devDependencies": {
         "@babel/core": "^7.11.6",
