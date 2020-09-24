@@ -3,13 +3,11 @@ import { createExpressServer } from 'routing-controllers';
 import http from 'http';
 import path from 'path';
 import { UserController } from './controllers/User.controller';
-let compression = require('compression');
+import express, { Request, Response } from 'express';
+
 let app = createExpressServer({
   controllers: [UserController]
 }); // creates express app, registers all controller routes and returns you express app instance
-app.use(compression());
-
-import express, { Request, Response } from 'express';
 
 
 // Express app initialization
