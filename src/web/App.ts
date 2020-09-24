@@ -1,13 +1,13 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import BaseController from './controllers/Base.controller';
 import path from 'path';
+import Controller from '../interfaces/Controller.interface';
 
 class App {
   public app: express.Application;
   public port: number;
 
-  constructor(controllers: BaseController[], port: number) {
+  constructor(controllers: Controller[], port: number) {
     this.app = express();
     this.port = port;
 
@@ -29,12 +29,14 @@ class App {
     this.app.use('/assets', express.static(path.join(__dirname, 'frontend')));
   }
 
-  private initializeControllers(controllers: BaseController[]) {
+  private initializeControllers(controllers: Controller[]) {
     controllers.forEach(controller => {
       this.app.use('/', controller.router);
     });
   }
-
+  public getServer() {
+    return this.app;
+  }
   public listen() {
     this.app.listen(this.port, () => {
       console.log(`App listening on the port ${this.port}`);

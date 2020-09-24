@@ -8,7 +8,10 @@ const config: ConnectionOptions = {
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  synchronize: true
+  migrations: ['src/migrations/*.ts'],
+  cli: {
+    migrationsDir: 'src/migrations'
+  }
 };
 
-export default config;
+export = config;

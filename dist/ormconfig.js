@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const config = {
     type: 'postgres',
     host: process.env.POSTGRES_HOST,
@@ -8,7 +7,10 @@ const config = {
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
     entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-    synchronize: true
+    migrations: ['src/migrations/*.ts'],
+    cli: {
+        migrationsDir: 'src/migrations'
+    }
 };
-exports.default = config;
+module.exports = config;
 //# sourceMappingURL=ormconfig.js.map

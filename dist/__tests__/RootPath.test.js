@@ -4,12 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
-const web_1 = __importDefault(require("../web/web"));
-describe('GET /api/users', () => {
+const App_1 = __importDefault(require("../web/App"));
+const controllers_1 = require("../web/controllers");
+describe('GET /*', () => {
     test('It should respond with an array of Users', async () => {
-        const response = await supertest_1.default(web_1.default).get('/');
-        expect(response.text).toContain('<div id="root"></div>');
-        expect(response.status).toEqual(200);
+        const app = new App_1.default([new controllers_1.RootController()], 6000);
+        const res = await supertest_1.default(app.getServer()).get('/');
+        expect(res.text).toContain('<div id="root"></div>');
+        expect(res.status).toEqual(200);
+        const res2 = await supertest_1.default(app.getServer()).get('/something');
+        expect(res.text).toContain('<div id="root"></div>');
+        expect(res.status).toEqual(200);
     });
 });
 //# sourceMappingURL=RootPath.test.js.map

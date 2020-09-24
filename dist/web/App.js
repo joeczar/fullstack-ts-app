@@ -29,6 +29,9 @@ class App {
             this.app.use('/', controller.router);
         });
     }
+    getServer() {
+        return this.app;
+    }
     listen() {
         this.app.listen(this.port, () => {
             console.log(`App listening on the port ${this.port}`);

@@ -1,10 +1,17 @@
 import request from 'supertest';
-import app from '../web/web';
+import App from '../web/App';
+import { RootController } from '../web/controllers';
 
-describe('GET /api/users', () => {
+
+describe('GET /*', () => {
   test('It should respond with an array of Users', async () => {
-    const response = await request(app).get('/');
-    expect(response.text).toContain('<div id="root"></div>');
-    expect(response.status).toEqual(200);
+    const app = new App([new RootController()], 6000);
+    const res = await request(app.getServer()).get('/');
+    expect(res.text).toContain('<div id="root"></div>');
+    expect(res.status).toEqual(200);
+
+    const res2 = await request(app.getServer()).get('/something');
+     expect(res.text).toContain('<div id="root"></div>');
+     expect(res.status).toEqual(200);
   });
 });
