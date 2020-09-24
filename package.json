@@ -8,7 +8,7 @@
         "build:backend": "tsc",
         "start:frontend": "webpack",
         "start:build": "tsc -w",
-        "start:run": "nodemon dist/main.js",
+        "start:run": "nodemon dist/server.js",
         "start": "concurrently yarn:start:*"
     },
     "jest": {
