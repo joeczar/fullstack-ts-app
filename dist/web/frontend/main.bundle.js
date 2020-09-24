@@ -171,7 +171,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
 // Module
-___CSS_LOADER_EXPORT___.push([module.i, ".App {\n    margin: 30px auto;\n    max-width: 320px;\n    padding: 2em;\n    border: 1px solid silver;\n    border-radius: 1em;\n\n    text-align: center;\n}\n", "",{"version":3,"sources":["webpack://src/web/frontend/style.css"],"names":[],"mappings":"AAAA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,YAAY;IACZ,wBAAwB;IACxB,kBAAkB;;IAElB,kBAAkB;AACtB","sourcesContent":[".App {\n    margin: 30px auto;\n    max-width: 320px;\n    padding: 2em;\n    border: 1px solid silver;\n    border-radius: 1em;\n\n    text-align: center;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.i, ".App {\r\n    margin: 30px auto;\r\n    max-width: 320px;\r\n    padding: 2em;\r\n    border: 1px solid silver;\r\n    border-radius: 1em;\r\n\r\n    text-align: center;\r\n}\r\n", "",{"version":3,"sources":["webpack://src/web/frontend/style.css"],"names":[],"mappings":"AAAA;IACI,iBAAiB;IACjB,gBAAgB;IAChB,YAAY;IACZ,wBAAwB;IACxB,kBAAkB;;IAElB,kBAAkB;AACtB","sourcesContent":[".App {\r\n    margin: 30px auto;\r\n    max-width: 320px;\r\n    padding: 2em;\r\n    border: 1px solid silver;\r\n    border-radius: 1em;\r\n\r\n    text-align: center;\r\n}\r\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
 
