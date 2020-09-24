@@ -9,10 +9,6 @@ let app = createExpressServer({
   controllers: [UserController]
 }); // creates express app, registers all controller routes and returns you express app instance
 
-
-// Express app initialization
-// const app = express();
-
 // Template configuration
 app.set('view engine', 'ejs');
 app.set('views', 'public');
