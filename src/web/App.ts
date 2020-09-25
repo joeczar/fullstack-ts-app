@@ -4,18 +4,19 @@ import compression from 'compression';
 import helmet from 'helmet';
 import path from 'path';
 import Controller from '../interfaces/Controller.interface';
+import { useExpressServer } from 'routing-controllers';
+import { UserController } from './controllers/User.controller';
 
 class App {
   public app: express.Application;
   public port: number;
 
-  constructor(controllers: Controller[], port: number) {
+  constructor(port: number) {
     this.app = express();
     this.port = port;
     this.initializeStatic();
-
     this.initializeMiddlewares();
-    this.initializeControllers(controllers);
+    useExpressServer(this.app, {controllers:[UserController]})
     
   }
 
@@ -38,11 +39,6 @@ class App {
     res.render('index');
   };
 
-  private initializeControllers(controllers: Controller[]) {
-    controllers.forEach(controller => {
-      this.app.use('/api', controller.router);
-    });
-  }
   public getServer() {
     return this.app;
   }

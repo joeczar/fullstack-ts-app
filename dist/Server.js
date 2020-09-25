@@ -8,7 +8,7 @@ require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const ormconfig_1 = __importDefault(require("./ormconfig"));
 const App_1 = __importDefault(require("./web/App"));
-const controllers_1 = require("./web/controllers");
+// import {} from './web/controllers';
 const validateEnv_1 = __importDefault(require("./utils/validateEnv"));
 validateEnv_1.default();
 const port = Number(process.env.PORT);
@@ -20,8 +20,7 @@ const port = Number(process.env.PORT);
     catch (err) {
         console.log('Error connecting to DB', err);
     }
-    const posts = new controllers_1.PostController();
-    const app = new App_1.default([posts], port);
+    const app = new App_1.default(port);
     app.listen();
 })();
 //# sourceMappingURL=server.js.map
