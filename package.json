@@ -2,9 +2,10 @@
     "name": "fullstack-ts-app",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "server.js",
     "scripts": {
         "test": "jest --watchAll",
+        "start:docker": "docker-compose up",
         "build:backend": "tsc",
         "start:frontend": "webpack",
         "start:build": "tsc -w",
