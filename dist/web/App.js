@@ -8,6 +8,7 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const compression_1 = __importDefault(require("compression"));
 const helmet_1 = __importDefault(require("helmet"));
 const path_1 = __importDefault(require("path"));
+const crypto_1 = __importDefault(require("crypto"));
 const routing_controllers_1 = require("routing-controllers");
 const User_controller_1 = require("./controllers/User.controller");
 const Auth_controller_1 = require("./controllers/Auth.controller");
@@ -28,6 +29,17 @@ class App {
         this.app.use(body_parser_1.default.json());
         this.app.use(compression_1.default());
         this.app.use(helmet_1.default());
+        this.app.use((req, res, next) => {
+            res.locals.cspNonce = crypto_1.default.randomBytes(16).toString('hex');
+            next();
+        });
+        this.app.use(helmet_1.default.contentSecurityPolicy({
+            directives: {
+                defaultSrc: ["'self'"],
+                styleSrc: ["'self' 'unsafe-inline'"],
+                scriptSrc: ["'self'"]
+            }
+        }));
     }
     initializeStatic() {
         // Template configuration

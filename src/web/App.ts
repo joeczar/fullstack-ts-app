@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import helmet from 'helmet';
 import path from 'path';
-import Controller from '../interfaces/Controller.interface';
+import crypto from 'crypto';
 import { useExpressServer } from 'routing-controllers';
 import { UserController } from './controllers/User.controller';
 import { AuthController } from './controllers/Auth.controller';
@@ -26,6 +26,19 @@ class App {
     this.app.use(bodyParser.json());
     this.app.use(compression());
     this.app.use(helmet());
+    this.app.use((req, res, next) => {
+      res.locals.cspNonce = crypto.randomBytes(16).toString('hex');
+      next();
+    });
+    this.app.use(
+      helmet.contentSecurityPolicy({
+        directives: {
+          defaultSrc: ["'self'"],
+          styleSrc: ["'self' 'unsafe-inline'"],
+          scriptSrc: ["'self'"]
+        }
+      })
+    );
   }
 
   private initializeStatic() {
