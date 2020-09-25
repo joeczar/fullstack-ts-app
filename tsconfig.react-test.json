@@ -18,6 +18,8 @@
       "isolatedModules": true,
       "jsx": "react",
       "rootDir": "./src/web/__test__/React", 
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
         
     },
     "include":["**/*.ts","**/*.tsx"]

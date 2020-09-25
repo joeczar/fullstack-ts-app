@@ -6,7 +6,9 @@ const config = {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+    entities: [
+        `${__dirname}/../**/*.entity${__dirname.includes('src') ? '.ts' : '.js'}`
+    ],
     migrations: ['src/migrations/*.ts'],
     cli: {
         migrationsDir: 'src/migrations'

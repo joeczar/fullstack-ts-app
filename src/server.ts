@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import config from './ormconfig';
 import App from './web/App';
-import { RootController } from './web/controllers';
+import { RootController, PostController } from './web/controllers';
 import validateEnv from './utils/validateEnv';
 
 validateEnv();
@@ -17,7 +17,7 @@ const port = Number(process.env.PORT);
   } catch (err) {
     console.log('Error connecting to DB', err);
   }
-
-  const app = new App([new RootController()], port);
+  const posts = new PostController();
+  const app = new App([posts], port);
   app.listen();
 })();

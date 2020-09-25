@@ -20,7 +20,8 @@ const port = Number(process.env.PORT);
     catch (err) {
         console.log('Error connecting to DB', err);
     }
-    const app = new App_1.default([new controllers_1.RootController()], port);
+    const posts = new controllers_1.PostController();
+    const app = new App_1.default([posts], port);
     app.listen();
 })();
 //# sourceMappingURL=server.js.map
