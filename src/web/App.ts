@@ -6,6 +6,7 @@ import path from 'path';
 import Controller from '../interfaces/Controller.interface';
 import { useExpressServer } from 'routing-controllers';
 import { UserController } from './controllers/User.controller';
+import { AuthController } from './controllers/Auth.controller';
 
 class App {
   public app: express.Application;
@@ -16,8 +17,9 @@ class App {
     this.port = port;
     this.initializeStatic();
     this.initializeMiddlewares();
-    useExpressServer(this.app, {controllers:[UserController]})
-    
+    useExpressServer(this.app, {
+      controllers: [UserController, AuthController]
+    });
   }
 
   private initializeMiddlewares() {

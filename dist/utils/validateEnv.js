@@ -9,7 +9,7 @@ function validateEnv() {
         POSTGRES_USER: envalid_1.str(),
         POSTGRES_PASSWORD: envalid_1.str(),
         POSTGRES_DB: envalid_1.str(),
-        PORT: envalid_1.port()
+        SERVER_PORT: envalid_1.port()
     });
 }
 exports.default = validateEnv;

@@ -10,6 +10,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const path_1 = __importDefault(require("path"));
 const routing_controllers_1 = require("routing-controllers");
 const User_controller_1 = require("./controllers/User.controller");
+const Auth_controller_1 = require("./controllers/Auth.controller");
 class App {
     constructor(port) {
         this.index = (req, res) => {
@@ -19,7 +20,9 @@ class App {
         this.port = port;
         this.initializeStatic();
         this.initializeMiddlewares();
-        routing_controllers_1.useExpressServer(this.app, { controllers: [User_controller_1.UserController] });
+        routing_controllers_1.useExpressServer(this.app, {
+            controllers: [User_controller_1.UserController, Auth_controller_1.AuthController]
+        });
     }
     initializeMiddlewares() {
         this.app.use(body_parser_1.default.json());

@@ -8,7 +8,7 @@ import validateEnv from './utils/validateEnv';
 
 validateEnv();
 
-const port = Number(process.env.PORT);
+const port = Number(process.env.SERVER_PORT);
 
 (async () => {
   try {
