@@ -239,8 +239,115 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 const react_dom_1 = __importDefault(__webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js"));
 const App_1 = __importDefault(__webpack_require__(/*! ./App */ "./src/web/frontend/App.tsx"));
-"'unsafe-eval'";
-react_dom_1.default.render(react_1.default.createElement(App_1.default, null), document.getElementById('root'));
+const react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+const redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+const redux_2 = __webpack_require__(/*! ./redux */ "./src/web/frontend/redux/index.ts");
+const redux_thunk_1 = __importDefault(__webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js"));
+const store = redux_1.createStore(redux_2.rootReducer, redux_1.applyMiddleware(redux_thunk_1.default));
+react_dom_1.default.render(react_1.default.createElement(react_redux_1.Provider, { store: store },
+    react_1.default.createElement(App_1.default, null)), document.getElementById('root'));
+
+
+/***/ }),
+
+/***/ "./src/web/frontend/redux/index.ts":
+/*!*****************************************!*\
+  !*** ./src/web/frontend/redux/index.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.rootReducer = void 0;
+const redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+const modules_1 = __webpack_require__(/*! ./modules */ "./src/web/frontend/redux/modules/index.ts");
+exports.rootReducer = redux_1.combineReducers({
+    user: modules_1.userReducer
+});
+
+
+/***/ }),
+
+/***/ "./src/web/frontend/redux/modules/index.ts":
+/*!*************************************************!*\
+  !*** ./src/web/frontend/redux/modules/index.ts ***!
+  \*************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+__exportStar(__webpack_require__(/*! ./user */ "./src/web/frontend/redux/modules/user.ts"), exports);
+
+
+/***/ }),
+
+/***/ "./src/web/frontend/redux/modules/typedActions.ts":
+/*!********************************************************!*\
+  !*** ./src/web/frontend/redux/modules/typedActions.ts ***!
+  \********************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createTypedAction = void 0;
+function createTypedAction(type, payload) {
+    return { type, payload };
+}
+exports.createTypedAction = createTypedAction;
+
+
+/***/ }),
+
+/***/ "./src/web/frontend/redux/modules/user.ts":
+/*!************************************************!*\
+  !*** ./src/web/frontend/redux/modules/user.ts ***!
+  \************************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userReducer = void 0;
+const typedActions_1 = __webpack_require__(/*! ./typedActions */ "./src/web/frontend/redux/modules/typedActions.ts");
+const initialState = { username: null };
+const login = (username) => {
+    return typedActions_1.createTypedAction('user/LOGIN', username);
+};
+const logout = () => {
+    return typedActions_1.createTypedAction('user/LOGOUT');
+};
+function userReducer(state = initialState, action) {
+    switch (action.type) {
+        case 'user/LOGIN':
+            return { username: action.payload };
+        case 'user/LOGOUT':
+            return { username: null };
+        default:
+            return state;
+    }
+}
+exports.userReducer = userReducer;
 
 
 /***/ }),

@@ -22,6 +22,7 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@reduxjs/toolkit": "^1.4.0",
         "bcrypt": "^5.0.0",
         "body-parser": "^1.19.0",
         "class-transformer": "^0.2.3",
@@ -42,6 +43,9 @@
         "postcss": "^7.0.2",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
+        "react-redux": "^7.2.1",
+        "redux": "^4.0.5",
+        "redux-thunk": "^2.3.0",
         "reflect-metadata": "^0.1.13",
         "routing-controllers": "^0.9.0-alpha.6",
         "typeorm": "^0.2.26"
@@ -66,7 +70,10 @@
         "@types/node": "^14.10.1",
         "@types/react": "^16.9.49",
         "@types/react-dom": "^16.9.8",
+        "@types/react-redux": "^7.1.9",
         "@types/react-test-renderer": "^16.9.3",
+        "@types/redux": "^3.6.0",
+        "@types/redux-thunk": "^2.1.0",
         "@types/supertest": "^2.0.10",
         "awesome-typescript-loader": "^5.2.1",
         "babel-core": "^7.0.0-bridge.0",
