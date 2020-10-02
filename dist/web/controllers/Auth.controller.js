@@ -12,17 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const routing_controllers_1 = require("routing-controllers");
 let AuthController = class AuthController {
-    showReg() { }
+    showAuth() { return { auth: true }; }
 };
 __decorate([
-    routing_controllers_1.Get(''),
-    routing_controllers_1.Render('index'),
+    routing_controllers_1.Get(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], AuthController.prototype, "showReg", null);
+], AuthController.prototype, "showAuth", null);
 AuthController = __decorate([
-    routing_controllers_1.Controller('/welcome*')
+    routing_controllers_1.JsonController('/auth')
 ], AuthController);
 exports.AuthController = AuthController;
 //# sourceMappingURL=Auth.controller.js.map

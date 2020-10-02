@@ -222,6 +222,34 @@ exports.default = App;
 
 /***/ }),
 
+/***/ "./src/web/frontend/components/home.tsx":
+/*!**********************************************!*\
+  !*** ./src/web/frontend/components/home.tsx ***!
+  \**********************************************/
+/*! no static exports found */
+/*! all exports used */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Home = void 0;
+const react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+const react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+exports.Home = () => {
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Home")));
+};
+const mapStateToProps = (state) => ({});
+const mapDispatchToProps = {};
+exports.default = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(exports.Home);
+
+
+/***/ }),
+
 /***/ "./src/web/frontend/main.tsx":
 /*!***********************************!*\
   !*** ./src/web/frontend/main.tsx ***!
@@ -243,9 +271,19 @@ const react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/rea
 const redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 const redux_2 = __webpack_require__(/*! ./redux */ "./src/web/frontend/redux/index.ts");
 const redux_thunk_1 = __importDefault(__webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js"));
+const home_1 = __webpack_require__(/*! ./components/home */ "./src/web/frontend/components/home.tsx");
 const store = redux_1.createStore(redux_2.rootReducer, redux_1.applyMiddleware(redux_thunk_1.default));
-react_dom_1.default.render(react_1.default.createElement(react_redux_1.Provider, { store: store },
-    react_1.default.createElement(App_1.default, null)), document.getElementById('root'));
+let elem;
+let isLoggedIn = location.pathname !== "/welcome";
+// let isLoggedIn = true;
+if (isLoggedIn) {
+    elem = (react_1.default.createElement(react_redux_1.Provider, { store: store },
+        react_1.default.createElement(App_1.default, null)));
+}
+else {
+    elem = react_1.default.createElement(home_1.Home, null); //; <Welcome />
+}
+react_dom_1.default.render(elem, document.getElementById('root'));
 
 
 /***/ }),

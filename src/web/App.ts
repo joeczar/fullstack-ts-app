@@ -5,8 +5,9 @@ import helmet from 'helmet';
 import path from 'path';
 import crypto from 'crypto';
 import { useExpressServer } from 'routing-controllers';
-import { UserController } from './controllers/User.controller';
-import { AuthController } from './controllers/Auth.controller';
+import { UserController, AuthController } from './controllers';
+import cookieSession from 'cookie-session';
+
 
 class App {
   public app: express.Application;
@@ -15,14 +16,20 @@ class App {
   constructor(port: number) {
     this.app = express();
     this.port = port;
-    this.initializeStatic();
-    this.initializeMiddlewares();
     useExpressServer(this.app, {
       controllers: [UserController, AuthController]
     });
+    this.initializeStatic();
+    this.initializeMiddlewares();
+
   }
 
   private initializeMiddlewares() {
+    const cookieSessionMiddleware = cookieSession({
+      secret: process.env.COOKIE_SESSION,
+      maxAge: Number(process.env.COOKIE_AGE),
+    });
+    this.app.use(cookieSessionMiddleware);
     this.app.use(bodyParser.json());
     this.app.use(compression());
     this.app.use(helmet());
@@ -48,10 +55,26 @@ class App {
 
     // Static files configuration
     this.app.use('/assets', express.static(path.join(__dirname, 'frontend')));
-    this.app.get('/',  this.index);
+    this.app.get('*', this.index);
+    this.app.get('/welcome', this.welcome);
+    // this.app'
   }
-  private index = (req: Request, res: Response) => {
-    res.render('index');
+  public index = (req: Request, res: Response) => {
+
+    if (req.session && !req.session.registerId) {
+      res.redirect("/welcome");
+    } else {
+      res.render('index');
+    }
+
+  };
+  public welcome = (req: Request, res: Response) => {
+    if (req.session && req.session.registerId) {
+      res.redirect("/");
+    } else {
+      res.render('index');
+    }
+
   };
 
   public getServer() {

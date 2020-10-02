@@ -10,22 +10,40 @@ const helmet_1 = __importDefault(require("helmet"));
 const path_1 = __importDefault(require("path"));
 const crypto_1 = __importDefault(require("crypto"));
 const routing_controllers_1 = require("routing-controllers");
-const User_controller_1 = require("./controllers/User.controller");
-const Auth_controller_1 = require("./controllers/Auth.controller");
+const controllers_1 = require("./controllers");
+const cookie_session_1 = __importDefault(require("cookie-session"));
 class App {
     constructor(port) {
         this.index = (req, res) => {
-            res.render('index');
+            if (req.session && !req.session.registerId) {
+                res.redirect("/welcome");
+            }
+            else {
+                res.render('index');
+            }
+        };
+        this.welcome = (req, res) => {
+            if (req.session && req.session.registerId) {
+                res.redirect("/");
+            }
+            else {
+                res.render('index');
+            }
         };
         this.app = express_1.default();
         this.port = port;
+        routing_controllers_1.useExpressServer(this.app, {
+            controllers: [controllers_1.UserController, controllers_1.AuthController]
+        });
         this.initializeStatic();
         this.initializeMiddlewares();
-        routing_controllers_1.useExpressServer(this.app, {
-            controllers: [User_controller_1.UserController, Auth_controller_1.AuthController]
-        });
     }
     initializeMiddlewares() {
+        const cookieSessionMiddleware = cookie_session_1.default({
+            secret: process.env.COOKIE_SESSION,
+            maxAge: Number(process.env.COOKIE_AGE),
+        });
+        this.app.use(cookieSessionMiddleware);
         this.app.use(body_parser_1.default.json());
         this.app.use(compression_1.default());
         this.app.use(helmet_1.default());
@@ -47,7 +65,9 @@ class App {
         this.app.set('views', 'public');
         // Static files configuration
         this.app.use('/assets', express_1.default.static(path_1.default.join(__dirname, 'frontend')));
-        this.app.get('/', this.index);
+        this.app.get('*', this.index);
+        this.app.get('/welcome', this.welcome);
+        // this.app'
     }
     getServer() {
         return this.app;

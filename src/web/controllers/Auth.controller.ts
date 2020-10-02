@@ -1,9 +1,8 @@
-import { Controller, Res, Req, Get, Post, Render } from 'routing-controllers';
+import { Controller, Res, Req, Get, Post, Render, JsonController } from 'routing-controllers';
 import { Request, Response } from 'express';
 
-@Controller('/welcome*')
+@JsonController('/auth')
 export class AuthController {
-  @Get('')
-  @Render('index')
-  showReg() {}
+  @Get()
+  showAuth() { return { auth: true }; }
 }
