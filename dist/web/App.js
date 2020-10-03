@@ -15,7 +15,8 @@ const cookie_session_1 = __importDefault(require("cookie-session"));
 class App {
     constructor(port) {
         this.index = (req, res) => {
-            if (req.session && !req.session.registerId) {
+            const { userId } = req.session;
+            if (!userId) {
                 res.redirect("/welcome");
             }
             else {
@@ -23,7 +24,7 @@ class App {
             }
         };
         this.welcome = (req, res) => {
-            if (req.session && req.session.registerId) {
+            if (req.session && req.session.userId) {
                 res.redirect("/");
             }
             else {
@@ -32,15 +33,19 @@ class App {
         };
         this.app = express_1.default();
         this.port = port;
+        this.initializeMiddlewares();
         routing_controllers_1.useExpressServer(this.app, {
+            // routePrefix: '/api',
+            // development: false,
+            defaultErrorHandler: false,
+            // validation: true,
             controllers: [controllers_1.UserController, controllers_1.AuthController]
         });
         this.initializeStatic();
-        this.initializeMiddlewares();
     }
     initializeMiddlewares() {
         const cookieSessionMiddleware = cookie_session_1.default({
-            secret: process.env.COOKIE_SESSION,
+            secret: process.env.COOKIE_SESSION || 'cookieKey',
             maxAge: Number(process.env.COOKIE_AGE),
         });
         this.app.use(cookieSessionMiddleware);
@@ -64,10 +69,9 @@ class App {
         this.app.set('view engine', 'ejs');
         this.app.set('views', 'public');
         // Static files configuration
-        this.app.use('/assets', express_1.default.static(path_1.default.join(__dirname, 'frontend')));
+        this.app.use('/assets', express_1.default.static(path_1.default.join(__dirname, '..', 'frontend')));
         this.app.get('*', this.index);
         this.app.get('/welcome', this.welcome);
-        // this.app'
     }
     getServer() {
         return this.app;

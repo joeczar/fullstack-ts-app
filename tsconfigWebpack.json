@@ -7,10 +7,12 @@
         "jsx": "react",
         "strict": true,
         "esModuleInterop": true,
-        "rootDir": "./src/web/frontend",
+        "rootDir": "./src/frontend",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true
         
     },
-    "include":["./src/web/frontend"]
+    "include": [
+        "./src/frontend"
+    ]
 }

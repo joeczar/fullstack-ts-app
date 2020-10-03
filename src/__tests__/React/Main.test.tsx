@@ -1,7 +1,7 @@
 import React from "react";
 import { render,  RenderResult } from "@testing-library/react";
 
-import App from "../../web/frontend/App";
+import App from "../../frontend/App";
 
 let documentBody: RenderResult;
 

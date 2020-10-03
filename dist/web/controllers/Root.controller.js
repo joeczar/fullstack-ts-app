@@ -17,29 +17,42 @@ const routing_controllers_1 = require("routing-controllers");
 let RootController = 
 // eslint-disable-next-line no-unused-vars
 class RootController {
-    showReg(req, res) {
-        // return res.render('index');
-        // return 'Hello!';
+    index(req, res) {
+        return res.render('index');
+        // if (req.session && !req.session.registerId) {
+        //   res.redirect("/welcome");
+        // } else {
+        //   res.render('index');
+        // }
     }
-    getRoot() { }
+    ;
+    // @Render('index')
+    welcome(req, res) {
+        return res.render('index');
+        // if (req.session && req.session.userId) {
+        //   res.redirect("/");
+        // } else {
+        //   res.render('index');
+        // }
+    }
+    ;
 };
 __decorate([
     routing_controllers_1.Get('*'),
-    routing_controllers_1.Render('index'),
     __param(0, routing_controllers_1.Req()), __param(1, routing_controllers_1.Res()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
-], RootController.prototype, "showReg", null);
+], RootController.prototype, "index", null);
 __decorate([
     routing_controllers_1.Get('welcome'),
-    routing_controllers_1.Render('index'),
+    __param(0, routing_controllers_1.Req()), __param(1, routing_controllers_1.Res()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
-], RootController.prototype, "getRoot", null);
+], RootController.prototype, "welcome", null);
 RootController = __decorate([
-    routing_controllers_1.Controller('/')
+    routing_controllers_1.Controller()
     // eslint-disable-next-line no-unused-vars
 ], RootController);
 exports.RootController = RootController;

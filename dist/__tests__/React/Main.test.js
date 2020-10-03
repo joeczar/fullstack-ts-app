@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const react_2 = require("@testing-library/react");
-const App_1 = __importDefault(require("../../web/frontend/App"));
+const App_1 = __importDefault(require("../../frontend/App"));
 let documentBody;
 describe("<App />", () => {
     beforeEach(() => {
